@@ -1,0 +1,14 @@
+{
+  "slug": "jordan", "order": 3,
+  "title": "Jordan Reyes",
+  "summary": "Kubernetes / Operations · owns the manifests and the runbook.",
+  "about": "I wrote the Deployments and Services and practiced every operation we show in the video.",
+  "size": "medium",
+  "appearance": { "style": "ice", "color": "#8fd3ff", "rings": { "on": true, "color": "#bfe6ff", "tilt": -12 } },
+  "projects": [
+    { "slug": "readiness-probes", "title": "Readiness Probes in Practice", "summary": "What 0/1 READY really means.", "tags": ["kubernetes"] },
+    { "slug": "rollback-drill", "title": "Rollback Drill", "summary": "A bad image, found with logs, undone in one command.", "tags": ["kubernetes", "troubleshooting"] },
+    { "slug": "grafana-stack", "title": "Grafana Monitoring Stack", "summary": "Prometheus and Grafana in Compose.", "tags": ["compose", "grafana"] },
+    { "slug": "private-registry", "title": "Private Registry Setup", "summary": "A registry with TLS on a VM.", "tags": ["registry"] }
+  ]
+}

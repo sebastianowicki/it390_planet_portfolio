@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Portfolio Galaxy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body class="pre-explore">
+  <canvas id="scene" aria-label="3D portfolio galaxy: a home planet with projects in orbit"></canvas>
+  <div id="labels" aria-hidden="true"></div>
+
+  <section id="intro">
+    <div class="wrap">
+      <div class="eyebrow">IT 390 · Portfolio galaxy</div>
+      <h1 id="introTitle">Welcome to my student portfolio</h1>
+      <p id="introText">Every planet out there is one of my projects. Zoom out to explore.</p>
+      <div class="intro-actions">
+        <button id="zoomBtn" class="pill-btn" type="button">Zoom out</button>
+        <button id="welcomeBtn" class="pill-btn ghost" type="button">Land here</button>
+      </div>
+      <div class="cue">scroll or pinch out</div>
+    </div>
+  </section>
+
+  <div id="hud" class="glass g-ui">
+    <div class="title" data-title>Portfolio galaxy</div>
+    <div class="stats" id="stats">connecting…</div>
+    <div class="reconnecting" id="reconnecting" hidden>no ready pods · retrying /api/galaxy…</div>
+    <nav id="example" hidden aria-label="Example galaxy"><a href="?example=solo" data-example="solo">Solo</a><a href="?example=team" data-example="team">Team</a></nav>
+  </div>
+  <button id="mcBtn" class="glass g-ui" type="button" aria-expanded="false" hidden><span class="dot"></span>Mission control</button>
+
+  <nav id="roster" class="glass g-ui" aria-label="Planets in this galaxy">
+    <div class="tools">
+      <input id="rosterSearch" type="search" placeholder="Find a project" aria-label="Find a project">
+      <select id="rosterTag" aria-label="Filter by tag"><option value="">All tags</option></select>
+    </div>
+    <p id="rosterCount"></p>
+    <div id="rosterList"></div>
+  </nav>
+  <div id="hint" class="g-ui">drag to rotate · scroll to zoom · click a planet or moon</div>
+  <aside id="info" class="glass g-ui" hidden aria-live="polite"></aside>
+  <aside id="mc" hidden aria-label="Mission control"></aside>
+
+  <div id="flash" aria-hidden="true"></div>
+  <div id="win" role="dialog" aria-label="Page browser" hidden>
+    <div class="chrome">
+      <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+      <button class="cbtn" type="button" id="wBack" aria-label="Back">←</button>
+      <button class="cbtn" type="button" id="wReload" aria-label="Reload">↻</button>
+      <div class="url"><span class="lock" aria-hidden="true">●</span><span id="wUrl"></span></div>
+      <button class="cbtn leave" type="button" id="wLeave">Leave planet</button>
+    </div>
+    <iframe id="wFrame" title="Planet page"></iframe>
+  </div>
+  <div id="toasts" aria-live="polite"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

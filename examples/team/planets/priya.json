@@ -1,0 +1,12 @@
+{
+  "slug": "priya", "order": 4,
+  "title": "Priya Shah",
+  "summary": "App / Content · owns the Flask app and the 3D page.",
+  "about": "I kept the app small: a welcome page, landing pages, a JSON API and a visit counter.",
+  "size": "medium",
+  "appearance": { "style": "banded", "color": "#b07bd8" },
+  "projects": [
+    { "slug": "galaxy-api", "title": "The Galaxy API", "summary": "/api/galaxy, the JSON the 3D page draws.", "tags": ["flask", "python"] },
+    { "slug": "data-dashboard", "title": "Python Data Dashboard", "summary": "A notebook turned into a container.", "tags": ["python", "jupyter"] }
+  ]
+}

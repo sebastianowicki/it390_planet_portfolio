@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% block body %}
+<section class="pv-hero">
+  <div class="txt">
+    <div class="eyebrow">Home planet</div>
+    <h1>{{ c.headline or 'Welcome to my student portfolio' }}</h1>
+    <p>{% if team %}{{ c.tagline }}{% else %}I'm {{ s.owner }}. {{ c.tagline }}{% endif %}</p>
+    <p class="about">{{ c.about }}</p>
+    {% if c.links %}<div class="links">{% for l in c.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a>{% endfor %}</div>{% endif %}
+  </div>
+  <div class="orb-wrap" data-planet-view data-api="/api/galaxy" data-slug="home"><div class="sun-orb"></div></div>
+</section>
+<section class="strip" aria-label="Galaxy stats">
+  <div><span class="k">Planets</span><span class="v">{{ c.planets|length }}</span><span class="s">in orbit around home</span></div>
+  <div><span class="k">Visits</span><span class="v">{{ views.home if views else '—' }}</span><span class="s">{{ 'counted in Redis' if views else 'Redis is down, so no count' }}</span></div>
+  <div><span class="k">Image tag</span><span class="v">{{ s.version }}</span><span class="s">set by CI</span></div>
+  <div><span class="k">Pod</span><span class="v pod">{{ s.pod }}</span><span class="s">the replica that answered</span></div>
+</section>
+<section>
+  <div class="sec-head"><h2>Planets</h2><span>{% if tag %}tagged {{ tag }} · {{ planets|length }}{% else %}{{ planets|length }} in orbit{% endif %}</span></div>
+  <nav class="tags filter" aria-label="Filter by tag">
+    <a href="{{ url_for('welcome') }}" class="{{ 'on' if not tag }}">all</a>
+    {% for t in tags %}<a href="{{ url_for('welcome', tag=t) }}" class="{{ 'on' if t == tag }}">{{ t }}</a>{% endfor %}
+  </nav>
+  <div class="proj-grid">
+    {% for p in planets %}
+    <a class="proj" href="{{ url_for('planet', slug=p.slug) }}" style="--pc: {{ (p.appearance or {}).get('color', s.color) }}">
+      <span class="thumb" aria-hidden="true"></span>
+      <span class="txt">
+        <span class="size">{% if is_person(p) %}{{ p.projects|length }} moon{{ "" if p.projects|length == 1 else "s" }} · landing page{% else %}{{ p.size }} planet · project{% endif %}</span>
+        <span class="t">{{ p.title }}</span>
+        <span class="d">{{ p.summary }}</span>
+        <span class="tags">{% for t in (p.tags or []) %}<span>{{ t }}</span>{% endfor %}</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+.git
+.github
+.env
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.venv
+tests
+examples
+k8s
+docs
+web/node_modules
+web/dist
+compose.yaml
+README.md

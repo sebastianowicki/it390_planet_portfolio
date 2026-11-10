@@ -1,0 +1,22 @@
+{
+  "owner": "Team Orbit",
+  "headline": "Welcome to Team Orbit",
+  "tagline": "Four IT-390 students, one galaxy.",
+  "about": "This is our team's galaxy. Each of us is a planet with our own landing page, and every moon is one of our projects. The planet in the middle ring is the project we built together. It's all one Docker image, built by GitHub Actions and running on Kubernetes.",
+  "home": { "appearance": { "style": "ocean", "clouds": true, "atmosphere": { "strength": 0.85 }, "spin": "slow" } },
+  "links": [ { "label": "Team repo", "url": "https://github.com/" } ],
+  "planets": [
+    {
+      "slug": "portfolio-galaxy", "order": 0,
+      "title": "Portfolio Galaxy",
+      "summary": "Our team project: this galaxy, as one image plus Redis, on kind.",
+      "tags": ["kubernetes", "docker", "compose", "ci"],
+      "size": "large",
+      "appearance": { "style": "banded", "color": "#f2c56b", "rings": { "on": true, "color": "#f6dfa6", "tilt": 18 } },
+      "body": [
+        "A multi-stage Dockerfile builds the 3D page with Node and ships it inside a slim Python image. Redis counts visits.",
+        "GitHub Actions tests and publishes it to GHCR on every push to main. We deploy it ourselves with kubectl."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "maya", "order": 2,
+  "title": "Maya Okafor",
+  "summary": "Container / Integration · owns the Dockerfile and Compose.",
+  "about": "I made the image small, fast to rebuild and non-root, and got Compose starting everything with one command.",
+  "size": "medium",
+  "appearance": { "style": "lava", "color": "#e0602b", "spin": "fast" },
+  "projects": [
+    { "slug": "multi-stage-build", "title": "Multi-stage Build Benchmarks", "summary": "From 1.1 GB to 160 MB.", "tags": ["docker", "buildkit"] },
+    { "slug": "redis-counter-stack", "title": "Compose Stack with Redis", "summary": "Two services, one command.", "tags": ["compose", "redis"] }
+  ]
+}

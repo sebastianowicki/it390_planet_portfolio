@@ -1,0 +1,29 @@
+{% extends "base.html" %}{% block title %}{{ p.title }} · {{ s.title }}{% endblock %}{% block body %}
+<section class="pv-hero">
+  <div class="txt">
+    <a class="crumb" href="{{ url_for('welcome') }}">← Home planet</a>
+    <div class="eyebrow">Planet · {{ p.projects|length }} moon{{ '' if p.projects|length == 1 else 's' }}</div>
+    <h1>{{ p.title }}</h1>
+    <p>{{ p.summary }}</p>
+    {% if p.about %}<p class="about">{{ p.about }}</p>{% endif %}
+    {% if p.links %}<div class="links">{% for l in p.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a>{% endfor %}</div>{% endif %}
+  </div>
+  <div class="orb-wrap" data-planet-view data-api="/api/galaxy" data-slug="{{ p.slug }}" style="--c: {{ (p.appearance or {}).get('color', s.color) }}"><div class="orb-ring"></div><div class="orb"></div></div>
+</section>
+<section>
+  <div class="sec-head"><h2>Moons</h2><span>one per project · {{ (views[p.slug] ~ ' visits') if views else 'counter offline' }}</span></div>
+  <div class="proj-grid">
+    {% for m in p.projects %}
+    <a class="proj" href="{{ url_for('moon', slug=p.slug, project=m.slug) }}" style="--pc: #b9c0d4">
+      <span class="thumb moon" aria-hidden="true"></span>
+      <span class="txt">
+        <span class="size">moon {{ loop.index }}</span>
+        <span class="t">{{ m.title }}</span>
+        <span class="d">{{ m.summary }}</span>
+        <span class="tags">{% for t in (m.tags or []) %}<span>{{ t }}</span>{% endfor %}</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

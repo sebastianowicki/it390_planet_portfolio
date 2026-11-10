@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-galaxy-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "three": "0.170.0"
+  },
+  "devDependencies": {
+    "vite": "5.4.11",
+    "vitest": "2.1.8"
+  }
+}

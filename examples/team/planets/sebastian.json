@@ -1,0 +1,13 @@
+{
+  "slug": "sebastian", "order": 1,
+  "title": "Sebastian",
+  "summary": "CI/CD · owns the GitHub Actions workflow and GHCR.",
+  "about": "I built the pipeline that turns every push into a tested, tagged image.",
+  "size": "large",
+  "appearance": { "style": "ocean", "color": "#3a9bd5", "clouds": true },
+  "projects": [
+    { "slug": "ci-to-ghcr", "title": "CI Pipeline to GHCR", "summary": "Tests first, then a sha- tagged image on main.", "tags": ["ci", "ghcr"] },
+    { "slug": "flask-todo-api", "title": "Dockerized Flask To-Do API", "summary": "A slim, non-root image with a health check.", "tags": ["flask", "docker"] },
+    { "slug": "kind-cluster-lab", "title": "Kubernetes on kind", "summary": "Scaling, a rollout and a rollback.", "tags": ["kubernetes"] }
+  ]
+}

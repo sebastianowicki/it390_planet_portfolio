@@ -1,0 +1,27 @@
+# The galaxy and its supporting service. One command: docker compose up --build
+# Then open http://localhost:8080
+services:
+  galaxy:
+    build: .
+    ports:
+      - "8080:8000"
+    environment:
+      GALAXY_OWNER: ${GALAXY_OWNER:-Sebastian}
+      GALAXY_COLOR: ${GALAXY_COLOR:-#3fa7c4}
+      ENVIRONMENT: ${ENVIRONMENT:-compose}
+      # The app finds Redis by its Compose service name, never by an IP address.
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # Counts visits to the home planet and every planet and moon. Its data resets when the
+  # container is recreated, which is fine: it's a counter, not a database.
+  redis:
+    image: redis:7.4.2-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5

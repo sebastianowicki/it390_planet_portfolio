@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ s.title }}{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>:root { --c: {{ s.color }}; }</style>
+</head>
+<body>
+<div class="pv-wrap">
+  <div class="pv-top">
+    <a class="back" href="/" data-galaxy-exit>← Back out to space</a>
+    <div class="pv-meta"><span>{{ s.title }}</span><span class="chip running">running</span><span class="env">{{ s.environment }}</span></div>
+  </div>
+  {% block body %}{% endblock %}
+  <footer class="pv-foot"><span>Served by pod {{ s.pod }} · image tag {{ s.version }}</span><span>Content from content.json · settings from environment variables</span></footer>
+</div>
+<script>
+  // Inside the galaxy's window, "Back out to space" asks the galaxy to fly back instead of loading it in here.
+  document.querySelectorAll('[data-galaxy-exit]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (window.parent !== window) { e.preventDefault(); window.parent.postMessage('leave-planet', '*'); }
+    });
+  });
+</script>
+<script type="module" src="/planet-view.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}{{ p.title }} · {{ s.owner }}{% endblock %}{% block body %}
+<section class="pv-hero">
+  <div class="txt">
+    {% if parent %}<a class="crumb" href="{{ url_for('planet', slug=parent.slug) }}">← {{ parent.title }}</a>
+    <div class="eyebrow">Moon of {{ parent.title }}</div>{% else %}<a class="crumb" href="{{ url_for('welcome') }}">← Home planet</a>
+    <div class="eyebrow">{{ p.size }} planet</div>{% endif %}
+    <h1>{{ p.title }}</h1>
+    <p>{{ p.summary }}</p>
+    <span class="tags">{% for t in (p.tags or []) %}<span>{{ t }}</span>{% endfor %}</span>
+  </div>
+  <div class="orb-wrap" data-planet-view data-api="/api/galaxy" data-slug="{{ key }}" style="--c: {{ (p.appearance or {}).get('color', s.color) }}"><div class="orb-ring"></div><div class="orb"></div></div>
+</section>
+<article class="body-card">
+  {% set paras = p.body or [p.summary] %}{% for para in ([paras] if paras is string else paras) %}<p>{{ para }}</p>{% endfor %}
+  <p class="views">{{ (views[key] ~ ' visits, counted in Redis') if views else 'Visit counter offline: Redis is down' }}</p>
+</article>
+{% endblock %}

@@ -51,14 +51,14 @@ You need your own repo, because GitHub Actions publishes the image under **your*
 
 ```bash
 cd ~
-git clone https://github.com/<your-username>/<repo>.git portfolio-galaxy
-cd portfolio-galaxy
+git clone https://github.com/<your-username>/it390_planet_portfolio.git 
+cd it390_planet_portfolio
 git config user.name "Your Name"
 git config user.email "you@example.com"     # the email on your GitHub account
 code .
 ```
 
-From now on, every command runs from inside this folder (`~/portfolio-galaxy`). If you're ever unsure where you are, run `pwd`, then `cd ~/portfolio-galaxy`.
+From now on, every command runs from inside this folder (`~/it390_planet_portfolio`). If you're ever unsure where you are, run `pwd`, then `cd ~/pit390_planet_portfolio`.
 
 <details>
 <summary>Starting from an empty repo instead of a fork</summary>
@@ -67,8 +67,8 @@ Create an empty **Public** repo on GitHub with nothing in it (no README or .giti
 
 ```bash
 cd ~
-git clone https://github.com/<owner>/<this-repo>.git portfolio-galaxy
-cd portfolio-galaxy
+git clone https://github.com/<owner>/<this-repo>.git 
+cd it390_planet_portfolio
 git remote set-url origin https://github.com/<your-username>/<your-new-repo>.git
 git push -u origin main
 ```
@@ -83,7 +83,7 @@ git push -u origin main
 This runs everything (the 3D page, the app and Redis) with one command. Start Docker Desktop first.
 
 ```bash
-cd ~/portfolio-galaxy
+cd ~/it390_planet_portfolio
 docker compose up --build
 ```
 
@@ -103,7 +103,7 @@ To stop it, press **Ctrl+C**, then run `docker compose down`.
 First, set up Python once:
 
 ```bash
-cd ~/portfolio-galaxy
+cd ~/it390_planet_portfolio
 python -m venv .venv
 source .venv/Scripts/activate          # Mac: source .venv/bin/activate
 pip install -r requirements-dev.txt
@@ -121,7 +121,7 @@ python app.py                          # http://localhost:8000/welcome
 And the 3D page in a second terminal:
 
 ```bash
-cd ~/portfolio-galaxy/web
+cd ~/it390_planet_portfolio/web
 npm ci                                 # first time only
 npm run dev                            # http://localhost:5173
 ```

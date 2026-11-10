@@ -208,7 +208,55 @@ Lower down, `"planets": [ … ]` is the list of planets. Each `{ … }` block is
 
 Planets fill the rings from the inside out: the first 4 go on the inner ring, the next 5 on the second, and so on.
 
-### 4c · Check your changes and see them
+### 4c · Two ways to add planets: one list, or one file each
+
+You don't have to put every planet in `content.json`. Any `.json` file you put in the **`planets/`** folder is also a planet. The app reads both and combines them into one galaxy, so you can use either way or mix them.
+
+| | In `content.json` | As files in `planets/` |
+| --- | --- | --- |
+| How | Add a `{ … }` block to the `"planets": [ … ]` list | Create `planets/<something>.json` holding one planet block |
+| Good for | A solo galaxy, with everything in one place | Teams (each person edits only their own file, so nobody's changes collide), or keeping each project in its own file |
+| Order in orbit | The order they're listed in | Set by `"order"`: lower numbers sit closer to the home planet |
+
+The same rules apply both ways: every planet needs a `slug` and a `title`, and no two planets can share a `slug`, across the list and all the files. The tests check this.
+
+**Example: one project in its own file.** Create `planets/flask-todo-api.json`:
+
+```json
+{
+  "slug": "flask-todo-api",
+  "order": 1,
+  "title": "Dockerized Flask To-Do API",
+  "summary": "A small REST API in a slim, non-root image.",
+  "tags": ["flask", "docker"],
+  "size": "large",
+  "appearance": { "style": "banded", "color": "#d98c5f" },
+  "body": ["What you built.", "What you learned."]
+}
+```
+
+**Example: a person with moons (team galaxy).** Give a planet a `projects` list and it becomes a person: it gets a landing page at `/p/<slug>`, and each project becomes a **moon** with its own page at `/p/<slug>/<project-slug>`. Create `planets/yourname.json`:
+
+```json
+{
+  "slug": "yourname",
+  "order": 1,
+  "title": "Your Name",
+  "summary": "Your role · what you own",
+  "about": "A sentence or two about you.",
+  "appearance": { "style": "ocean", "color": "#3a9bd5", "clouds": true },
+  "projects": [
+    { "slug": "first-project", "title": "First Project", "summary": "One line.", "tags": ["docker"] },
+    { "slug": "second-project", "title": "Second Project", "summary": "One line.", "tags": ["python"] }
+  ]
+}
+```
+
+A `projects` list works inside `content.json` too: moons aren't tied to the folder. For a team galaxy, set the team's name in `owner` and `headline` in `content.json`, give each teammate their own file in `planets/` with a different `order`, and keep only shared projects (or none: `"planets": []`) in `content.json`.
+
+**Not using the folder?** You can delete it, but then also delete the line `COPY planets/ planets/` from the `Dockerfile`, or the build fails with `"/planets": not found`.
+
+### 4d · Check your changes and see them
 
 JSON is strict: no comments, no comma after the last item, and every `"` closed. The tests check your file for you:
 
@@ -227,7 +275,7 @@ docker compose up --build              # Ctrl+C, then docker compose down, when 
 
 The content is built into the image, so it only changes after `--build`.
 
-### 4d · Save it to GitHub
+### 4e · Save it to GitHub
 
 ```bash
 git add content.json
@@ -235,30 +283,6 @@ git commit -m "My galaxy: home planet and projects"
 git push
 ```
 
-<details>
-<summary>Team galaxy: each teammate as a planet with moons</summary>
-
-A planet can be a **person** instead of a project: it gets a landing page at `/p/<name>`, and each of their projects is a **moon** with its own page at `/p/<name>/<project>`. Each teammate creates their own file in `planets/`, so nobody edits the same file.
-
-Create `planets/yourname.json`:
-
-```json
-{
-  "slug": "yourname",
-  "order": 1,
-  "title": "Your Name",
-  "summary": "Your role · what you own",
-  "about": "A sentence or two about you.",
-  "appearance": { "style": "ocean", "color": "#3a9bd5", "clouds": true },
-  "projects": [
-    { "slug": "first-project", "title": "First Project", "summary": "One line.", "tags": ["docker"] },
-    { "slug": "second-project", "title": "Second Project", "summary": "One line.", "tags": ["python"] }
-  ]
-}
-```
-
-The `projects` list is what makes it a person. `order` sets where each person sits in orbit; give every teammate a different number. Set the team's name in `owner` and `headline` in `content.json`, and keep only shared projects (or none: `"planets": []`) there.
-</details>
 
 ---
 
@@ -273,7 +297,7 @@ It stops at publishing; it doesn't deploy. You do that in part 6.
 
 **Your first published image:**
 
-1. You already pushed in 4d. On GitHub, open your repo's **Actions** tab. Click the newest run and wait for both jobs to turn green (3–5 minutes).
+1. You already pushed in 4e. On GitHub, open your repo's **Actions** tab. Click the newest run and wait for both jobs to turn green (3–5 minutes).
 2. Click the **image** job → expand **Image name and tag**. You'll see `tag=sha-4f2c1a9` (yours will differ). **Write it down.**
 3. Make the image public, so Kubernetes can pull it without a password: your GitHub profile → **Packages** → **galaxy** → **Package settings** → **Change visibility** → **Public**.
 4. Check it pulls as a stranger would:

@@ -1,148 +1,25 @@
 {
-  "owner": "Sebastian",
+  "owner": "Your Name",
   "headline": "Welcome to my student portfolio",
-  "tagline": "IT student at DePaul. Containers, Kubernetes and the web.",
-  "about": "This galaxy is my portfolio. The planet you start on is home; every planet in orbit around it is one of my projects. The whole thing is one Docker image, built by GitHub Actions and running on Kubernetes.",
+  "tagline": "A one-line introduction goes here.",
+  "about": "The planet you start on is home. Every planet in orbit is one of my projects.",
   "home": {
-    "appearance": {
-      "style": "ocean",
-      "clouds": true,
-      "atmosphere": {
-        "strength": 0.85
-      },
-      "spin": "slow"
-    }
+    "appearance": { "style": "ocean", "clouds": true, "atmosphere": { "strength": 0.85 }, "spin": "slow" }
   },
   "links": [
-    {
-      "label": "GitHub",
-      "url": "https://github.com/"
-    },
-    {
-      "label": "Email",
-      "url": "mailto:you@example.com"
-    }
+    { "label": "GitHub", "url": "https://github.com/" }
   ],
   "planets": [
     {
-      "slug": "flask-todo-api",
-      "title": "Dockerized Flask To-Do API",
-      "summary": "A small REST API in a slim, non-root image, with a health check and pytest.",
-      "tags": [
-        "flask",
-        "docker",
-        "python"
-      ],
-      "size": "large",
-      "appearance": {
-        "style": "banded",
-        "color": "#d98c5f",
-        "rings": {
-          "on": true,
-          "color": "#d9c9a3",
-          "tilt": 22
-        }
-      },
-      "body": [
-        "My first real Dockerfile: python:3.12-slim, dependencies installed before the code so rebuilds take seconds, and a user with no root rights.",
-        "The API keeps its tasks in memory, so they reset when the container restarts. That was a good way to learn what a container's state really is."
-      ]
-    },
-    {
-      "slug": "redis-counter-stack",
-      "title": "Compose Stack with a Redis Counter",
-      "summary": "Two services started with one command, talking by service name.",
-      "tags": [
-        "compose",
-        "redis"
-      ],
+      "slug": "sample-project",
+      "title": "Sample Project",
+      "summary": "Replace this with one of your projects.",
+      "tags": ["docker"],
       "size": "medium",
-      "appearance": {
-        "style": "ocean",
-        "color": "#3a7bd5",
-        "clouds": true
-      },
+      "appearance": { "style": "banded", "color": "#d98c5f", "rings": { "on": true, "color": "#d9c9a3", "tilt": 22 } },
       "body": [
-        "A Flask app and Redis in one compose.yaml. The app finds Redis at the hostname redis, set through an environment variable, never an IP.",
-        "Stopping Redis shows the difference between the app being down and one feature being down."
-      ]
-    },
-    {
-      "slug": "ci-to-ghcr",
-      "title": "CI Pipeline to GHCR",
-      "summary": "GitHub Actions runs the tests, then builds and publishes an image tagged with the commit.",
-      "tags": [
-        "ci",
-        "github-actions",
-        "ghcr"
-      ],
-      "size": "medium",
-      "appearance": {
-        "style": "lava",
-        "color": "#e0452b",
-        "spin": "fast"
-      },
-      "body": [
-        "Every push to main and every pull request runs the tests first. Only main publishes, as ghcr.io/<me>/galaxy:sha-<commit>.",
-        "It's the same pipeline that built the image you're looking at right now."
-      ]
-    },
-    {
-      "slug": "kind-cluster-lab",
-      "title": "Kubernetes on kind",
-      "summary": "A Deployment and a Service on a local cluster, with scaling, a rollout and a rollback.",
-      "tags": [
-        "kubernetes",
-        "kind"
-      ],
-      "size": "large",
-      "appearance": {
-        "style": "ice",
-        "color": "#8fd3ff",
-        "rings": {
-          "on": true,
-          "color": "#bfe6ff",
-          "tilt": -12
-        }
-      },
-      "body": [
-        "Two replicas behind one Service, a readiness probe on /health, and kubectl rollout undo when a bad image went out.",
-        "Deleting a pod and watching the Deployment replace it was the moment Kubernetes clicked for me."
-      ]
-    },
-    {
-      "slug": "nginx-proxy-lab",
-      "title": "Nginx Reverse Proxy Lab",
-      "summary": "One front door routing paths to three small services.",
-      "tags": [
-        "nginx",
-        "compose"
-      ],
-      "size": "small",
-      "appearance": {
-        "style": "rocky",
-        "color": "#b59b7a"
-      },
-      "body": [
-        "Path-based routing to three upstreams, and a friendly 502 page when one of them is down."
-      ]
-    },
-    {
-      "slug": "data-dashboard",
-      "title": "Python Data Dashboard",
-      "summary": "A Jupyter notebook turned into a containerized dashboard.",
-      "tags": [
-        "python",
-        "docker"
-      ],
-      "size": "small",
-      "appearance": {
-        "style": "banded",
-        "color": "#9a7bd8",
-        "spin": "slow"
-      },
-      "body": [
-        "Pinned dependencies, a .dockerignore that keeps the 300 MB dataset out of the build context, and a port published with docker run -p."
+        "What the project is and what you built.",
+        "What you learned doing it."
       ]
     }
   ]

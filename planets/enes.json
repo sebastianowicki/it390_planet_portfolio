@@ -1,0 +1,13 @@
+{
+  "slug": "enes",
+  "order": 2,
+  "title": "Enes Demirel",
+  "summary": "Machine learning · Python and web",
+  "about": "I build machine learning projects and web apps. More at demirelenes.dev.",
+  "size": "medium",
+  "appearance": { "style": "lava", "color": "#d9653b", "spin": "normal" },
+  "projects": [
+    { "slug": "something-in-the-way", "title": "Something in the Way", "summary": "Crater detection on Mars imagery (U-Net, Faster R-CNN, DINOv3) and crater-aware rover route planning with A*.", "tags": ["python", "pytorch", "ai"] },
+    { "slug": "mnist-from-scratch", "title": "MNIST Neural Network from Scratch", "summary": "Two-layer network in pure NumPy with hand-written backprop; 90.5% test accuracy.", "tags": ["python", "numpy", "ai"] }
+  ]
+}

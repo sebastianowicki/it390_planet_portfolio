@@ -43,35 +43,78 @@ On Windows, **close and reopen Git Bash** after installing, so it sees the new t
 
 ## 2 · Get your own copy
 
-You need your own repo, because GitHub Actions publishes the image under **your** GitHub name.
+This repo is a starting point to copy, **not a project to fork or contribute to**. You make a brand-new repo of your own and copy this project into it. That way the galaxy is yours: GitHub Actions publishes the image under **your** GitHub name, and nothing you push ever comes back here.
 
-1. On GitHub, open this repo and click **Fork** (top right) → **Create fork**. You now have `github.com/<your-username>/<repo>`.
-2. In your fork, click the **Actions** tab → **I understand my workflows, go ahead and enable them**. Forks start with Actions turned off.
-3. Clone your fork and open it. Run, with your username and repo name:
+1. On GitHub, click **+** (top right) → **New repository**.
+   - **Repository name:** `it390_planet_portfolio` (or any name you like)
+   - **Public**
+   - Leave **Add a README**, **.gitignore** and **license** all off. The repo must be completely empty, or the push in step 2 will be rejected.
+
+   Click **Create repository**. You now have an empty `github.com/<your-username>/<your-repo>`.
+
+2. Copy this project onto your computer, point it at **your** repo, and push. Run, with your own username and repo name in the `set-url` line:
 
 ```bash
 cd ~
-git clone https://github.com/<your-username>/it390_planet_portfolio.git 
+git clone https://github.com/<owner>/it390_planet_portfolio.git it390_planet_portfolio
 cd it390_planet_portfolio
+git remote set-url origin https://github.com/<your-username>/<your-repo>.git
+git remote -v                                # both lines should show YOUR repo
 git config user.name "Your Name"
 git config user.email "you@example.com"     # the email on your GitHub account
+git push -u origin main
 code .
 ```
 
-From now on, every command runs from inside this folder (`~/it390_planet_portfolio`). If you're ever unsure where you are, run `pwd`, then `cd ~/pit390_planet_portfolio`.
+3. Refresh your repo on GitHub. You should see all the project files there. Actions are already turned on in a new repo, so there's nothing to enable; if you see a workflow start in the **Actions** tab, that's expected (Part 5 covers it).
+
+From now on, every command runs from inside this folder (`~/it390_planet_portfolio`), and `git push` goes to **your** repo. If you're ever unsure where you are, run `pwd`, then `cd ~/it390_planet_portfolio`.
 
 <details>
-<summary>Starting from an empty repo instead of a fork</summary>
+<summary>Building a shared galaxy with a team</summary>
 
-Create an empty **Public** repo on GitHub with nothing in it (no README or .gitignore), then:
+Want a group to work on one galaxy together? One person sets it up and everyone else works from **that person's** repo, not this one.
+
+**The owner** (one person):
+
+1. Do steps 1–3 above. Your repo is now the team's shared repo.
+2. Send teammates its URL: `https://github.com/<your-username>/<your-repo>`.
+3. Optional: to let teammates push branches directly instead of forking, go to **Settings** → **Collaborators** → **Add people**.
+
+**Each teammate:**
+
+1. Open the **owner's** repo (not this one) and click **Fork** → **Create fork**.
+2. In your fork, click the **Actions** tab → **I understand my workflows, go ahead and enable them**. Forks start with Actions turned off.
+3. Clone your fork and connect it to the shared repo. Run, with the right names:
 
 ```bash
 cd ~
-git clone https://github.com/<owner>/<this-repo>.git 
+git clone https://github.com/<your-username>/<team-repo>.git it390_planet_portfolio
 cd it390_planet_portfolio
-git remote set-url origin https://github.com/<your-username>/<your-new-repo>.git
-git push -u origin main
+git remote add upstream https://github.com/<owner-username>/<team-repo>.git
+git config user.name "Your Name"
+git config user.email "you@example.com"
 ```
+
+4. For each change, make a branch, push it to your fork, then open a **Pull request** on GitHub into the owner's repo:
+
+```bash
+git switch -c add-my-planet
+# ...edit, then:
+git add .
+git commit -m "Add my planet"
+git push -u origin add-my-planet
+```
+
+5. Before starting new work, pull in what others have merged:
+
+```bash
+git switch main
+git pull upstream main
+git push origin main
+```
+
+The owner reviews and merges pull requests, and the owner's CI publishes the team image.
 </details>
 
 ---
